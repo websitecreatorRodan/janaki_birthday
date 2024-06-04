@@ -208,16 +208,17 @@
 </head>
 
 <body>
-    
+
     <div class="birthday-card">
         <img src="1 (2).jpg" alt="Birthday Celebration Image">
         <h1>Happy Birthday Taneesh! <span class="inline-emoji" onclick="animateEmoji(this)">🎉</span></h1>
         <h2>Celebrating Your Special Day <span class="inline-emoji" onclick="animateEmoji(this)">🎂</span></h2>
         <p>Today is a wonderful day, filled with love, joy, and unforgettable moments. <span class="inline-emoji" onclick="animateEmoji(this)">💖</span></p>
-<div class="audio-player">
+        <div class="audio-player">
             <h3>Listen to a Special Birthday Song!</h3>
             <audio id="player" controls>
                 <source src="ffff.MP3" type="audio/mpeg">
+                <source src="audio/ffff.ogg" type="audio/ogg">
                 Your browser does not support the audio element.
             </audio>
         </div>
@@ -227,53 +228,44 @@
 
         <div class="wishes-section">
             <h3>Special Wishes <span class="inline-emoji" onclick="animateEmoji(this)">🎈</span></h3>
-            <p>Dear Taneesh, on your special day, we celebrate <strong>you</strong>! <span class="inline-emoji" onclick="animateEmoji(this)">🎁</span></p>
-            <p><span class="highlight">Creativity:</span> Your creative spirit brings ideas to life in the most amazing ways.</p>
-            <p><span class="highlight">Strength:</span> Your inner strength and resilience inspire us all to keep going, no matter what.</p>
-            <p><span class="highlight">Humor:</span> Your sense of humor brings laughter and joy, brightening every room you enter.</p>
+            <p>
+                Wishing you a year filled with adventure, success to fulfill your dreams, and the best that life can bring! <span class="inline-emoji" onclick="animateEmoji(this)">✨</span>
+            </p>
         </div>
 
         <div class="celebrate-section">
-            <h3>Celebrate Together! <span class="inline-emoji" onclick="animateEmoji(this)">🎉</span></h3>
-            <p>Join us in making Taneesh's birthday unforgettable. Let's create some beautiful memories together! <span class="inline-emoji" onclick="animateEmoji(this)">🎊</span></p>
-            <div class="emoji-container">
-                <span class="emoji" onclick="createFloatingEmoji('🎊')">🎊</span>
-                <span class="emoji" onclick="createFloatingEmoji('🍰')">🍰</span>
-                <span class="emoji" onclick="createFloatingEmoji('🎈')">🎈</span>
-                <span class="emoji" onclick="createFloatingEmoji('🎁')">🎁</span>
-            </div>
+            <h3>Celebrate with Style! <span class="inline-emoji" onclick="animateEmoji(this)">🎊</span></h3>
+            <p>May your day be filled with laughter, joy, and boundless fun. <span class="inline-emoji" onclick="animateEmoji(this)">🍰</span></p>
         </div>
 
-        
+        <div class="emoji-container">
+            <span class="emoji" onclick="animateEmoji(this)">🎁</span>
+            <span class="emoji" onclick="animateEmoji(this)">🎈</span>
+            <span class="emoji" onclick="animateEmoji(this)">🎉</span>
+            <span class="emoji" onclick="animateEmoji(this)">🍰</span>
+            <span class="emoji" onclick="animateEmoji(this)">❤️</span>
+        </div>
     </div>
 
-    <div id="animation-container" class="animation-container"></div>
+    <div class="animation-container" id="animationContainer"></div>
 
-    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const player = new Plyr('#player', {
-                autoplay: true
-            });
-        });
-
         function animateEmoji(element) {
             element.classList.add('clicked');
             setTimeout(() => {
                 element.classList.remove('clicked');
             }, 500);
-        }
-
-        function createFloatingEmoji(emoji) {
-            const animationContainer = document.getElementById('animation-container');
-            const floatingEmoji = document.createElement('div');
-            floatingEmoji.textContent = emoji;
+            
+            // Floating emoji animation
+            const floatingEmoji = element.cloneNode(true);
             floatingEmoji.className = 'floating-emoji';
-            floatingEmoji.style.left = `${Math.random() * 100}vw`;
-            animationContainer.appendChild(floatingEmoji);
-
+            document.getElementById('animationContainer').appendChild(floatingEmoji);
+            const { top, left } = element.getBoundingClientRect();
+            floatingEmoji.style.left = `${left}px`;
+            floatingEmoji.style.top = `${top}px`;
+            
             setTimeout(() => {
-                animationContainer.removeChild(floatingEmoji);
+                document.getElementById('animationContainer').removeChild(floatingEmoji);
             }, 2000);
         }
     </script>
